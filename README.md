@@ -1,38 +1,58 @@
-### playCounter App
+# playCounter
 
-Welcome to the playCounter App! This app allows you to test your timing skills with various challenges.
+A small React timing game: start a countdown, then try to stop it as close to zero as you can without running out of time.
 
-#### Features:
+Built as a practice project while learning React (refs, portals and `useImperativeHandle`).
 
-- **Player Name Setting:** Set your name to personalize the experience.
-- **Multiple Challenges:** Engage in different challenges with varying target times.
-- **Timer Control:** Start and stop the timer for each challenge.
-- **Result Display:** Know your score and remaining time for each challenge.
+![Landing page](./screenshots/LandingPage.png)
+![Score modal](./screenshots/scoreModal.png)
 
-#### Screenshots:
+## Features
 
-![Landing Page](./screenshots/LandingPage.png)
-![Score Modal](./screenshots/scoreModal.png)
+- Enter a player name to personalise the greeting
+- Four challenges with target times of 1, 5, 10 and 15 seconds
+- Start/stop a countdown that ticks every 10 ms
+- Result dialog showing the remaining time and a score (closer to zero scores higher); letting the timer run out counts as a loss
 
-#### How to Use:
+## Tech stack
 
-1. Enter your name in the provided input field and click "Set Name".
-2. Choose a challenge from the list presented.
-3. Click "Start Challenge" to begin the timer.
-4. Stop the timer by clicking "Stop" if needed.
-5. Once the challenge is complete, a modal will display your score and other details.
-6. Click "Close" to reset the challenge and try again.
+- React 18
+- Vite 4
+- Native `<dialog>` rendered through a React portal
 
-#### Components:
+## Getting started
 
-1. **App.jsx:** The main component orchestrating the player setup and challenge rendering.
-2. **Player.jsx:** Allows the user to set their name.
-3. **TimerChallenge.jsx:** Manages individual timer challenges and their interactions.
-4. **ResultModal.jsx:** Displays the result of each challenge, including score and remaining time.
+Prerequisites: Node.js 18+ and npm.
 
-#### Technologies Used:
+```bash
+git clone https://github.com/AkshayTripathiAI/playCounter.git
+cd playCounter
+npm install
+npm run dev
+```
 
-- React
-- JavaScript
+Then open the URL Vite prints (by default http://localhost:5173).
 
-Feel free to contribute or customize the app as needed! Happy timing!
+Other scripts:
+
+- `npm run build` - production build to `dist/`
+- `npm run preview` - serve the production build locally
+
+## Project structure
+
+```
+src/
+  App.jsx                # renders the player section and the four challenges
+  components/
+    Player.jsx           # name input (uses a ref)
+    TimerChallenge.jsx   # countdown logic for one challenge
+    ResultModal.jsx      # result dialog via createPortal + useImperativeHandle
+```
+
+## Known issues
+
+This is an unpolished learning project. The reset callback is passed to the result dialog as `onRest` instead of `onReset`, and the `<dialog>` is rendered with the `open` attribute, so resetting a challenge and the modal behaviour do not work as intended.
+
+## License
+
+MIT - see [LICENSE](LICENSE).

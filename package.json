@@ -1,5 +1,5 @@
 {
-  "name": "refs-portals-start",
+  "name": "play-counter",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
