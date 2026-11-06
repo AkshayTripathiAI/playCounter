@@ -9,16 +9,20 @@ Built as a practice project while learning React (refs, portals and `useImperati
 
 ## Features
 
-- Enter a player name to personalise the greeting
+- Enter a player name to personalise the greeting (remembered between visits)
 - Four challenges with target times of 1, 5, 10 and 15 seconds
-- Start/stop a countdown that ticks every 10 ms
-- Result dialog showing the remaining time and a score (closer to zero scores higher); letting the timer run out counts as a loss
+- Start/stop a countdown measured against real elapsed time (`performance.now()`), so it stays accurate even when the browser throttles timers
+- Result dialog with a progress bar, the remaining time and a score (closer to zero scores higher); letting the timer run out counts as a loss
+- Best score per challenge saved in `localStorage`, with a "New best score!" badge
+- Close the dialog with the button or the Escape key; either way the challenge resets
+- Responsive layout and visible keyboard focus styles
 
 ## Tech stack
 
 - React 18
 - Vite 4
 - Native `<dialog>` rendered through a React portal
+- Deployed to GitHub Pages from the `gh-pages` branch
 
 ## Getting started
 
@@ -44,14 +48,14 @@ Other scripts:
 src/
   App.jsx                # renders the player section and the four challenges
   components/
-    Player.jsx           # name input (uses a ref)
-    TimerChallenge.jsx   # countdown logic for one challenge
+    Player.jsx           # name input (uses a ref), persisted to localStorage
+    TimerChallenge.jsx   # countdown logic and best score for one challenge
     ResultModal.jsx      # result dialog via createPortal + useImperativeHandle
 ```
 
-## Known issues
+## Deploying
 
-This is an unpolished learning project. The reset callback is passed to the result dialog as `onRest` instead of `onReset`, and the `<dialog>` is rendered with the `open` attribute, so resetting a challenge and the modal behaviour do not work as intended.
+`vite.config.js` sets `base: '/playCounter/'` for GitHub Pages. Run `npm run build` and publish the contents of `dist/` (plus an empty `.nojekyll`) to the `gh-pages` branch.
 
 ## License
 
