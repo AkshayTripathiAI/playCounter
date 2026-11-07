@@ -1,5 +1,7 @@
 # playCounter
 
+**Live demo:** https://akshaytripathiai.github.io/playCounter/
+
 A small React timing game: start a countdown, then try to stop it as close to zero as you can without running out of time.
 
 Built as a practice project while learning React (refs, portals and `useImperativeHandle`).
